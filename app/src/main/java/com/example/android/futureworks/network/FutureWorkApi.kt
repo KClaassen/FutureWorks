@@ -13,31 +13,34 @@ import retrofit2.http.Header
 import retrofit2.http.Headers
 
 
-//private val moshi = Moshi.Builder()
-//    .add(KotlinJsonAdapterFactory())
-//    .build()
-//
-//val retrofitRESTClient = Retrofit.Builder()
-//    .baseUrl(BASE_URL)
-//    .addConverterFactory(ScalarsConverterFactory.create())
-//    .addConverterFactory(MoshiConverterFactory.create(moshi))
-//    .build()
+private val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
+
+val retrofitRESTClient = Retrofit.Builder()
+    .baseUrl(BASE_URL)
+    .addConverterFactory(ScalarsConverterFactory.create())
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .build()
 
 interface ArticleApiService {
 
     @Headers("Content-Type: application/json")
     @GET("articles")
     suspend fun getArticles(
-        @Header("Authorization") bearerToken: String
+        @Header("Authorization") bearerToken: String = ACCESS_TOKEN
     ):List<Article>
 
+    @Headers("Content-Type: application/json")
     @GET("articles/{articleId}")
-    suspend fun getArticleById():List<Article>
+    suspend fun getArticleById(
+        @Header("Authorization") bearerToken: String = ACCESS_TOKEN
+    ):List<Article>
 
 }
 
-//object ArticleApi {
-//    val retrofitService: ArticleApiService by lazy {
-//        retrofitRESTClient.create(ArticleApiService::class.java)
-//    }
-//}
+object ArticleApi {
+    val retrofitService: ArticleApiService by lazy {
+        retrofitRESTClient.create(ArticleApiService::class.java)
+    }
+}

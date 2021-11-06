@@ -19,21 +19,5 @@ class ArticleMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_main)
 
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
-
-        val service = Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-            .create(ArticleApiService::class.java)
-
-        CoroutineScope(IO).launch {
-            val response = service.getArticles(
-                bearerToken = Constants.ACCESS_TOKEN
-            )
-            Log.d("Retrofit Response", "onCreate: ${response}")
-        }
     }
 }
