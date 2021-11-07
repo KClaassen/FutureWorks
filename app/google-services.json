@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "896228220854",
+    "project_id": "futureworks-6fe05",
+    "storage_bucket": "futureworks-6fe05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896228220854:android:91539e2ff2d41b92542b17",
+        "android_client_info": {
+          "package_name": "com.example.android.futureworks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896228220854-87951unpkn8a0rrkrp7h1bujfbihj304.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC21gNhfqN_Tjn9YErDCoPNUEppjMQb1KA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896228220854-87951unpkn8a0rrkrp7h1bujfbihj304.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
