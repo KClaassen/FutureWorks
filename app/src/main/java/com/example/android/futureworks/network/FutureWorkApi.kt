@@ -25,10 +25,10 @@ val retrofitRESTClient = Retrofit.Builder()
 
 interface ArticleApiService {
 
-    @Headers("Content-Type: application/json")
+    @Headers("Content-Type: application/json", "Authorization: $ACCESS_TOKEN")
     @GET("articles")
     suspend fun getArticles(
-        @Header("Authorization") bearerToken: String = ACCESS_TOKEN
+       // @Header("Authorization") bearerToken: String = ACCESS_TOKEN
     ):List<Article>
 
     @Headers("Content-Type: application/json")

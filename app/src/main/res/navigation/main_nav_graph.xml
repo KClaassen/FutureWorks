@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/articleMainFragment">
+
+    <fragment
+        android:id="@+id/articleMainFragment"
+        android:name="com.example.android.futureworks.articlemain.ArticleMainFragment"
+        android:label="ArticleMainFragment" >
+        <action
+            android:id="@+id/action_articleMainFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment" />
+        <argument
+            android:name="selectedArticle"
+            app:argType="com.example.android.futureworks.models.Article" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.example.android.futureworks.articlemain.detail.ArticleDetailFragment"
+        android:label="ArticleDetailFragment">
+        <argument
+            android:name="selectedArticle"
+            app:argType="com.example.android.futureworks.models.Article"/>
+    </fragment>
+</navigation>
