@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.futureworks.MainActivity
 import com.example.android.futureworks.R
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.custom_login_screen.*
 import kotlinx.android.synthetic.main.custom_registry_screen.*
 
 class Authentication : AppCompatActivity() {
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.custom_login_screen)
@@ -62,5 +63,20 @@ class Authentication : AppCompatActivity() {
                 }
             }
         }
+
+        // Check if user is currently logged in
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            // Send user to ArticleMain fragment
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        } else {
+            Toast.makeText(
+                this, "Pleas login", Toast.LENGTH_SHORT
+            ).show()
+        }
     }
+
 }
