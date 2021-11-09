@@ -9,6 +9,8 @@
         <entry key="app/src/main/res/layout/article_item.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/layout/authentication.xml" value="0.2716200513368879" />
         <entry key="app/src/main/res/layout/authentication_screen.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/custom_login_screen.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/custom_registry_screen.xml" value="0.2210144927536232" />
         <entry key="app/src/main/res/layout/fragment_article_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_article_main.xml" value="0.1120572808093178" />
       </map>
