@@ -1,9 +1,9 @@
 package com.example.android.futureworks.articlemain
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,13 +12,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.futureworks.R
 import com.example.android.futureworks.adapter.ArticleAdapter
+import com.example.android.futureworks.authentication.Authentication
 import com.example.android.futureworks.databinding.FragmentArticleMainBinding
 import com.example.android.futureworks.models.Article
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_article_main.*
 
 class ArticleMainFragment : Fragment(), ArticleAdapter.ArticlesListener {
 
     private lateinit var binding: FragmentArticleMainBinding
+    private lateinit var user: FirebaseAuth
 
     private val viewModel: ArticleMainViewModel by lazy {
         val activity = requireNotNull(this.activity) {
@@ -40,10 +44,6 @@ class ArticleMainFragment : Fragment(), ArticleAdapter.ArticlesListener {
         with(binding) {
             viewmodel = viewModel
         }
-//
-//        val adapter = ArticleAdapter()
-//        recycler_view.adapter = adapter
-//        recycler_view.layoutManager = LinearLayoutManager(context)
 
         viewModel.articleListLiveData.observe(viewLifecycleOwner) {
             articlesList(it)
@@ -57,10 +57,9 @@ class ArticleMainFragment : Fragment(), ArticleAdapter.ArticlesListener {
                 viewModel.displayArticleDetailsComplete()
             }
         })
-//
-//        viewModel.articles.observe(viewLifecycleOwner) {
-//            adapter.articles = it
-//        }
+
+        user = FirebaseAuth.getInstance()
+        setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -74,6 +73,26 @@ class ArticleMainFragment : Fragment(), ArticleAdapter.ArticlesListener {
 
     override fun onClick(article: Article) {
         viewModel.onArticleClicked(article)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.overflow_menu, menu);
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.logout_button -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(activity, Authentication::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
