@@ -1,7 +1,6 @@
 package com.example.android.futureworks.network
 
 import com.example.android.futureworks.models.Article
-import com.example.android.futureworks.utils.Constants.ACCESS_TOKEN
 import com.example.android.futureworks.utils.Constants.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
