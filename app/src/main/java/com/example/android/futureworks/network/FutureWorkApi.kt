@@ -9,9 +9,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Headers
 
+const val accessToken = com.example.android.futureworks.BuildConfig.ACCESS_TOKEN
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -25,18 +25,9 @@ val retrofitRESTClient = Retrofit.Builder()
 
 interface ArticleApiService {
 
-    @Headers("Content-Type: application/json", "Authorization: $ACCESS_TOKEN")
+    @Headers("Content-Type: application/json", "Authorization: $accessToken")
     @GET("articles")
-    suspend fun getArticles(
-       // @Header("Authorization") bearerToken: String = ACCESS_TOKEN
-    ):List<Article>
-
-    @Headers("Content-Type: application/json")
-    @GET("articles/{articleId}")
-    suspend fun getArticleById(
-        @Header("Authorization") bearerToken: String = ACCESS_TOKEN
-    ):List<Article>
-
+    suspend fun getArticles():List<Article>
 }
 
 object ArticleApi {

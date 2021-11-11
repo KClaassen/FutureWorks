@@ -1,7 +1,6 @@
 package com.example.android.futureworks.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -27,9 +26,6 @@ class ArticleAdapter(private val listener: ArticlesListener): ListAdapter<Articl
     }
 
     class ArticleViewHolder(private var binding: ArticleItemBinding): RecyclerView.ViewHolder(binding.root) {
-//        private val date = itemView.findViewById<TextView>(R.id.tv_date)
-//        private val title = itemView.findViewById<TextView>(R.id.tv_title)
-//        private val summary = itemView.findViewById<TextView>(R.id.tv_summary)
 
         fun bind(article: Article, listener: ArticlesListener) {
             binding.listener = listener
@@ -43,13 +39,6 @@ class ArticleAdapter(private val listener: ArticlesListener): ListAdapter<Articl
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.bind(articles[position], listener)
-//        val article = getItem(position)
-//
-//        holder.itemView.setOnClickListener {
-//            onClickListener.onClick(article)
-//        }
-//
-//        holder.bind(article)
     }
 
     override fun getItemCount(): Int {
@@ -65,8 +54,5 @@ class ArticleAdapter(private val listener: ArticlesListener): ListAdapter<Articl
     interface ArticlesListener {
         fun onClick(article: Article) = Unit
     }
-//    class OnClickListener(val clickListener: (article: Article) -> Unit) {
-//        fun onClick(article: Article) = clickListener(article)
-//    }
 
 }

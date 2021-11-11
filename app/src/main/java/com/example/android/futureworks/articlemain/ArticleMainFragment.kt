@@ -3,7 +3,6 @@ package com.example.android.futureworks.articlemain
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,7 +15,6 @@ import com.example.android.futureworks.authentication.Authentication
 import com.example.android.futureworks.databinding.FragmentArticleMainBinding
 import com.example.android.futureworks.models.Article
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_article_main.*
 
 class ArticleMainFragment : Fragment(), ArticleAdapter.ArticlesListener {

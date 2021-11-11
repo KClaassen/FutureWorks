@@ -6,8 +6,6 @@ import androidx.lifecycle.*
 import com.example.android.futureworks.data.FutureWorksDatabase
 import com.example.android.futureworks.models.Article
 import com.example.android.futureworks.repository.FutureWorksRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -15,8 +13,6 @@ class ArticleMainViewModel(application: Application): ViewModel() {
 
     private val database = FutureWorksDatabase.getDatabase(application)
     private val repository = FutureWorksRepository(database)
-
-    //val articles get() = repository.articles
 
     var articleListLiveData: LiveData<List<Article>> = database.futureWorksDao.getArticles()
 
@@ -30,16 +26,6 @@ class ArticleMainViewModel(application: Application): ViewModel() {
             }
         }
     }
-
-//    fun getArticles() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            try {
-//                repository.getArticles()
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//        }
-//    }
 
     // Internally, we use a MutableLiveData to handle navigation to the selected article
     private val _navigateToSelectedArticle = MutableLiveData<Article>()
